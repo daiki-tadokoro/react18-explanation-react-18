@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import "./App.css";
 import { ReactQuery } from "./components/ReactQuery";
 import { Transition } from "./components/Transition";
@@ -12,9 +13,12 @@ function App() {
       <AutoBatchOther /> */}
       <Transition />
       <hr />
-      <Suspense fallback={<p>ローディング中だよー</p>}>
-        <ReactQuery />
-      </Suspense>
+
+      <ErrorBoundary fallback={<p>エラーだよー</p>}>
+        <Suspense fallback={<p>ローディング中だよー</p>}>
+          <ReactQuery />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
