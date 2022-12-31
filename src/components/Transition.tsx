@@ -42,6 +42,7 @@ const filteringAssignee = (assignee: string) => {
 export const Transition = () => {
   const [selectedAssingnee, setSelectedAssingnee] = useState<string>("");
   const [taskList, setTaskList] = useState<Task[]>(tasks);
+  const [isShowList, setIsShowList] = useState<boolean>(false);
 
   const onClickAssignee = (assignee: string) => {
     setSelectedAssingnee(assignee);
@@ -78,7 +79,18 @@ export const Transition = () => {
         リセット
       </button>
 
-      <TaskList taskList={taskList} />
+      <br />
+      <br />
+
+      <button
+        onClick={() => {
+          setIsShowList(!isShowList);
+        }}
+      >
+        表示/非表示
+      </button>
+
+      {isShowList && <TaskList taskList={taskList} />}
     </div>
   );
 };
