@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, startTransition } from "react";
 import { Avatar } from "./Avatar";
 
 type Task = {
@@ -44,7 +44,11 @@ export const Transition = () => {
 
   const onClickAssignee = (assignee: string) => {
     setSelectedAssingnee(assignee);
-    setTaskList(filteringAssignee(assignee));
+
+    // 優先度が低いstate更新をstartTransition内に記述
+    startTransition(() => {
+      setTaskList(filteringAssignee(assignee));
+    });
   };
 
   return (
