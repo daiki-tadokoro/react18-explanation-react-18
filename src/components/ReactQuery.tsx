@@ -15,10 +15,10 @@ const fetchAlbam = async () => {
 };
 
 export const ReactQuery = () => {
-  const { isLoading, error, data } = useQuery<Albam[]>(["albam"], fetchAlbam);
+  const { data } = useQuery<Albam[]>(["albam"], fetchAlbam);
 
-  if (error) return <p>エラーです</p>;
-  if (isLoading) return <p>ローディング中です</p>;
+  // if (error) return <p>エラーです</p>;
+  // if (isLoading) return <p>ローディング中です</p>;
 
   return (
     <>
