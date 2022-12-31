@@ -1,7 +1,8 @@
-import { useState, startTransition } from "react";
+import { useState } from "react";
 import { Avatar } from "./Avatar";
+import { TaskList } from "./TaskList";
 
-type Task = {
+export type Task = {
   id: number;
   title: string;
   assingnee: string;
@@ -45,10 +46,7 @@ export const Transition = () => {
   const onClickAssignee = (assignee: string) => {
     setSelectedAssingnee(assignee);
 
-    // 優先度が低いstate更新をstartTransition内に記述
-    startTransition(() => {
-      setTaskList(filteringAssignee(assignee));
-    });
+    setTaskList(filteringAssignee(assignee));
   };
 
   return (
@@ -79,15 +77,8 @@ export const Transition = () => {
       >
         リセット
       </button>
-      {taskList.map((task) => (
-        <div
-          key={task.id}
-          style={{ width: "300px", margin: "auto", background: "lavender" }}
-        >
-          <p>タイトル：{task.title}</p>
-          <p>担当：{task.assingnee}</p>
-        </div>
-      ))}
+
+      <TaskList taskList={taskList} />
     </div>
   );
 };
